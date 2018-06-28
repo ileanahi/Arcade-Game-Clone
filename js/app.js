@@ -36,26 +36,27 @@ var Player = function() {
     this.y = 380;
 };
 
-Player.prototype.update = function(keys) {
-    if (keys === 'up') {
-        this.y -= 50;
-    }
-    if (keys === 'down') {
-        this.y += 50;
-    }
-    if (keys === 'left') {
-        this.x -= 50;
-    }
-    if (keys === 'right') {
-        this.x += 50;
-    }
+Player.prototype.update = function() {
+
 };
 
 Player.prototype.render = function() {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function() {
+Player.prototype.handleInput = function(key) {
+    if (key === 'up') {
+        this.y -= 85;
+    }
+    if (key === 'down') {
+        this.y += 85;
+    }
+    if (key === 'left') {
+        this.x -= 85;
+    }
+    if (key === 'right') {
+        this.x += 85;
+    }
 
 };
 
