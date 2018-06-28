@@ -6,9 +6,9 @@ var Enemy = function() {
     // The image/sprite for our enemies, this uses
     // a helper we've provided to easily load images
     this.sprite = 'images/enemy-bug.png';
-    this.y = Math.floor((Math.random() * 200) + 50);
+    this.y = (Math.floor(Math.random() * (3 - 1 + 1)) + 1) * 80;
+    //this.y = Math.floor((Math.random() * 200) + 50);
     this.x = 0
-        // this.y = 225;
 };
 
 // Update the enemy's position, required method for game
@@ -19,6 +19,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    if (this.x < 505) {
+        this.x += Math.floor((Math.random() * 300) + 75) * dt;
+        //this.x += Math.floor((Math.random() * 5));
+    } else {
+        this.x = 0;
+        this.y = Math.floor((Math.random() * 150) + 50);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
