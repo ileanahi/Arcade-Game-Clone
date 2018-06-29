@@ -21,8 +21,8 @@ var Enemy = function(y) {
     // Speed of bugs
     this.speed = 1.2;
 
-    this.height = 100;
-    this.width = 100;
+    this.height = 50;
+    this.width = 50;
 };
 
 // Update the enemy's position, required method for game
@@ -39,15 +39,14 @@ Enemy.prototype.update = function(dt) {
     } else {
         // Reset bugs to beginning
         this.x = 0;
-
-        for (let i = 0; i < allEnemies.length; i++) {
-            if ((player.x < allEnemies[i].x + allEnemies[i].width) &&
-                (player.x + player.width > allEnemies[i].x) &&
-                (player.y < allEnemies[i].y + allEnemies[i].height) &&
-                (player.height + player.y > allEnemies[i].y)) {
-                player.x = 200;
-                player.y = 380;
-            }
+    }
+    for (let i = 0; i < allEnemies.length; i++) {
+        if ((player.x < allEnemies[i].x + allEnemies[i].width) &&
+            (player.x + player.width > allEnemies[i].x) &&
+            (player.y < allEnemies[i].y + allEnemies[i].height) &&
+            (player.height + player.y > allEnemies[i].y)) {
+            player.x = 200;
+            player.y = 380;
         }
     }
 
@@ -66,8 +65,8 @@ var Player = function() {
     this.sprite = 'images/char-horn-girl.png';
     this.x = 200;
     this.y = 380;
-    this.width = 100;
-    this.height = 100;
+    this.width = 50;
+    this.height = 50;
 };
 
 Player.prototype.update = function() {
