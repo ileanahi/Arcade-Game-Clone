@@ -1,3 +1,10 @@
+/*
+ * Collision detection
+ * Player selection
+ * More enemies
+ * Score
+ */
+
 // Enemies our player must avoid
 var Enemy = function(y) {
     // Variables applied to each of our instances go here,
@@ -14,6 +21,7 @@ var Enemy = function(y) {
     // Speed of bugs
     this.speed = 1.2;
 
+    this.height = 100;
     this.width = 100;
 };
 
@@ -32,12 +40,15 @@ Enemy.prototype.update = function(dt) {
         // Reset bugs to beginning
         this.x = 0;
 
-        if (this.x < player.x &&
-            this.x + this.width > player.x &&
-            this.y < player.y + player.height &&
-            this.y + this.width > player.y)
-            return true;
-
+        for (let i = 0; i < allEnemies.length; i++) {
+            if ((player.x < allEnemies[i].x + allEnemies[i].width) &&
+                (player.x + player.width > allEnemies[i].x) &&
+                (player.y < allEnemies[i].y + allEnemies[i].height) &&
+                (player.height + player.y > allEnemies[i].y)) {
+                player.x = 200;
+                player.y = 380;
+            }
+        }
     }
 
 };
@@ -55,6 +66,8 @@ var Player = function() {
     this.sprite = 'images/char-horn-girl.png';
     this.x = 200;
     this.y = 380;
+    this.width = 100;
+    this.height = 100;
 };
 
 Player.prototype.update = function() {
