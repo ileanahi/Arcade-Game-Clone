@@ -6,6 +6,7 @@
 
 let score = document.querySelector('.score');
 score.innerHTML = '<strong>Score:</strong> 0';
+let points = 0;
 
 // Enemies our player must avoid
 var Enemy = function(y) {
@@ -93,7 +94,8 @@ Player.prototype.handleInput = function(key) {
         this.x += 101;
     }
     if (this.y < 20 && key === 'up') {
-        console.log("Hurray");
+        points++;
+        score.innerHTML = '<strong>Score:</strong> ' + points;
         this.y = 380;
         this.x = 200;
     }
