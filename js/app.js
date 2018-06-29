@@ -1,9 +1,11 @@
 /*
- * Collision detection
  * Player selection
  * More enemies
  * Score
  */
+
+let score = document.querySelector('.score');
+score.innerHTML = '<strong>Score:</strong> 0';
 
 // Enemies our player must avoid
 var Enemy = function(y) {
