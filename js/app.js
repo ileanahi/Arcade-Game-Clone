@@ -97,7 +97,9 @@ Player.prototype.handleInput = function(key) {
     if (this.y < 20 && key === 'up') {
         points++;
         score.innerHTML = '<strong>Score:</strong> ' + points;
-        modal();
+        if (points >= 5) {
+            modal();
+        }
         this.y = 380;
         this.x = 200;
     }
