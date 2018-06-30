@@ -1,9 +1,10 @@
 /*
  * Player selection
  * More enemies
- * Score
+ * Lives
  */
 
+// Set up score element
 let score = document.querySelector('.score');
 score.innerHTML = '<strong>Score:</strong> 0';
 let points = 0;
@@ -96,10 +97,26 @@ Player.prototype.handleInput = function(key) {
     if (this.y < 20 && key === 'up') {
         points++;
         score.innerHTML = '<strong>Score:</strong> ' + points;
+        modal();
         this.y = 380;
         this.x = 200;
     }
 };
+
+function modal() {
+    let modal = document.querySelector('.modal');
+    modal.style.display = "block";
+
+    let modalContent = document.querySelector('.modal-content');
+    modalContent.innerHTML = "<img src=" + player.sprite + ">" + "<h2>Congratulations!</h2> You won!";
+
+
+    window.onclick = function(evt) {
+        if (evt.target === modal) {
+            modal.style.display = "none";
+        }
+    }
+}
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
