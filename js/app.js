@@ -44,11 +44,15 @@ Enemy.prototype.update = function(dt) {
         // Reset bugs to beginning
         this.x = 0;
     }
+
+    // Collision detection
     for (let i = 0; i < allEnemies.length; i++) {
         if ((player.x < allEnemies[i].x + allEnemies[i].width) &&
             (player.x + player.width > allEnemies[i].x) &&
             (player.y < allEnemies[i].y + allEnemies[i].height) &&
             (player.height + player.y > allEnemies[i].y)) {
+
+            // Reset player to the beginning
             player.x = 200;
             player.y = 380;
         }
@@ -95,16 +99,22 @@ Player.prototype.handleInput = function(key) {
         this.x += 101;
     }
     if (this.y < 20 && key === 'up') {
+        // Add to point count when water is reached
         points++;
+        // Update point counter
         score.innerHTML = '<strong>Score:</strong> ' + points;
+        // You win!
         if (points >= 5) {
             modal();
         }
+        // Reset to starting position
         this.y = 380;
         this.x = 200;
     }
 };
 
+
+// Modal window
 function modal() {
     let modal = document.querySelector('.modal');
     modal.style.display = "block";
@@ -124,6 +134,7 @@ function modal() {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 
+// Place Enemies on different lines
 enemyOne = new Enemy(40);
 enemyTwo = new Enemy(125);
 enemyThree = new Enemy(210);
