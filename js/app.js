@@ -1,7 +1,9 @@
 /*
+ * To-do:
  * Player selection
  * More enemies
  * Lives
+ * Timer
  */
 
 // Set up score element
@@ -31,7 +33,6 @@ var Enemy = function(y) {
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
-
 
 Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
@@ -129,6 +130,19 @@ function modal() {
         }
     }
 }
+
+/*
+const selectCharacter = document.querySelector('#select-screen');
+let select = document.getElementsByClassName('select');
+
+window.onclick = function(evt) {
+    if (evt.target === select) {
+        player.sprite = this.src;
+        selectCharacter.style.display = "none";
+    }
+}
+*/
+
 
 // Now instantiate your objects.
 // Place all enemy objects in an array called allEnemies
