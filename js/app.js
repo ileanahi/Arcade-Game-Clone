@@ -129,7 +129,7 @@ function modal() {
         if (evt.target === modal) {
             modal.style.display = "none";
         }
-    }
+    };
 }
 
 /*
@@ -155,7 +155,7 @@ enemyTwo = new Enemy(125);
 enemyThree = new Enemy(210);
 
 var allEnemies = [enemyOne, enemyTwo, enemyThree];
-var player = new Player;
+var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
