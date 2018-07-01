@@ -115,15 +115,16 @@ Player.prototype.handleInput = function(key) {
 };
 
 
-// Modal window
+// Display modal window
 function modal() {
     let modal = document.querySelector('.modal');
     modal.style.display = "block";
 
+    // Add content to window
     let modalContent = document.querySelector('.modal-content');
     modalContent.innerHTML = "<img src=" + player.sprite + ">" + "<h2>Congratulations!</h2> You won!";
 
-
+    // Hide window when clicked
     window.onclick = function(evt) {
         if (evt.target === modal) {
             modal.style.display = "none";
