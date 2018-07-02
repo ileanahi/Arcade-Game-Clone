@@ -4,6 +4,7 @@
  * More enemies
  * Lives
  * Timer
+ * Sounds
  */
 
 // Set up score element
