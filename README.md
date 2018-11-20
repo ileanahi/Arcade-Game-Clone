@@ -1,5 +1,4 @@
 # Arcade Game Clone
-===============================
 
 This game is a clone of the popular game frogger. It was created using HTML5 Canvas and Object Oriented JavaScript.
 
