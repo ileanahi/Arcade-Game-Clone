@@ -1,5 +1,7 @@
-frontend-nanodegree-arcade-game
+# Arcade Game Clone
 ===============================
+
+This game is a clone of the popular game frogger. It was created using HTML5 Canvas and Object Oriented JavaScript.
 
 ## Rules
 Avoid the bugs and get to the water! Score 5 points and win the game.
