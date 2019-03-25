@@ -82,6 +82,9 @@ class Player {
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
+    update() {
+        
+    }
     handleInput(key) {
         if (key === 'up' && this.y > 20) {
             this.y -= 85;
