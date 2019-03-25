@@ -13,29 +13,59 @@ score.innerHTML = '<strong>Score:</strong> 0';
 let points = 0;
 
 // Enemies our player must avoid
-var Enemy = function(y) {
-    // Variables applied to each of our instances go here,
-    // we've provided one for you to get started
+class Enemy {
+    constructor(y) {
+        // Variables applied to each of our instances go here,
+        // we've provided one for you to get started
 
-    // The image/sprite for our enemies, this uses
-    // a helper we've provided to easily load images
-    this.sprite = 'images/enemy-bug.png';
+        // The image/sprite for our enemies, this uses
+        // a helper we've provided to easily load images
+        this.sprite = 'images/enemy-bug.png';
 
-    // Position of bugs
-    this.y = y;
-    this.x = 0;
+        // Position of bugs
+        this.y = y;
+        this.x = 0;
 
-    // Speed of bugs
-    this.speed = 1.2;
+        // Speed of bugs
+        this.speed = 1.2;
 
-    this.height = 50;
-    this.width = 50;
+        this.height = 50;
+        this.width = 50;
+    }
+    update(dt) {
+        // You should multiply any movement by the dt parameter
+        // which will ensure the game runs at the same speed for
+        // all computers.
+
+        if (this.x < 505) {
+            this.x += this.speed * Math.floor(Math.random() * 300) * dt;
+        } else {
+            // Reset bugs to beginning
+            this.x = 0;
+        }
+
+        // Collision detection
+        for (let i = 0; i < allEnemies.length; i++) {
+            if ((player.x < allEnemies[i].x + allEnemies[i].width) &&
+                (player.x + player.width > allEnemies[i].x) &&
+                (player.y < allEnemies[i].y + allEnemies[i].height) &&
+                (player.height + player.y > allEnemies[i].y)) {
+
+                // Reset player to the beginning
+                player.x = 200;
+                player.y = 380;
+            }
+        }
+    }
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
 };
 
 // Update the enemy's position, required method for game
 // Parameter: dt, a time delta between ticks
 
-Enemy.prototype.update = function(dt) {
+/*Enemy.prototype.update = function (dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
@@ -60,18 +90,18 @@ Enemy.prototype.update = function(dt) {
         }
     }
 
-};
+};*/
 
 // Draw the enemy on the screen, required method for game
-Enemy.prototype.render = function() {
+/*Enemy.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
+};*/
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 
-var Player = function() {
+var Player = function () {
     this.sprite = 'images/char-horn-girl.png';
     this.x = 200;
     this.y = 380;
@@ -79,15 +109,15 @@ var Player = function() {
     this.height = 50;
 };
 
-Player.prototype.update = function() {
+Player.prototype.update = function () {
 
 };
 
-Player.prototype.render = function() {
+Player.prototype.render = function () {
     ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
 };
 
-Player.prototype.handleInput = function(key) {
+Player.prototype.handleInput = function (key) {
     if (key === 'up' && this.y > 20) {
         this.y -= 85;
     }
@@ -126,7 +156,7 @@ function modal() {
     modalContent.innerHTML = "<img src=" + player.sprite + ">" + "<h2>Congratulations!</h2> You won!";
 
     // Hide window when clicked
-    window.onclick = function(evt) {
+    window.onclick = function (evt) {
         if (evt.target === modal) {
             modal.style.display = "none";
         }
@@ -160,7 +190,7 @@ var player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
-document.addEventListener('keyup', function(e) {
+document.addEventListener('keyup', function (e) {
     var allowedKeys = {
         37: 'left',
         38: 'up',
