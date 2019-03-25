@@ -32,6 +32,9 @@ class Enemy {
         this.height = 50;
         this.width = 50;
     }
+    // Update the enemy's position, required method for game
+    // Parameter: dt, a time delta between ticks
+
     update(dt) {
         // You should multiply any movement by the dt parameter
         // which will ensure the game runs at the same speed for
@@ -57,94 +60,56 @@ class Enemy {
             }
         }
     }
+    // Draw the enemy on the screen, required method for game
     render() {
         ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
     }
 };
 
-// Update the enemy's position, required method for game
-// Parameter: dt, a time delta between ticks
-
-/*Enemy.prototype.update = function (dt) {
-    // You should multiply any movement by the dt parameter
-    // which will ensure the game runs at the same speed for
-    // all computers.
-
-    if (this.x < 505) {
-        this.x += this.speed * Math.floor(Math.random() * 300) * dt;
-    } else {
-        // Reset bugs to beginning
-        this.x = 0;
-    }
-
-    // Collision detection
-    for (let i = 0; i < allEnemies.length; i++) {
-        if ((player.x < allEnemies[i].x + allEnemies[i].width) &&
-            (player.x + player.width > allEnemies[i].x) &&
-            (player.y < allEnemies[i].y + allEnemies[i].height) &&
-            (player.height + player.y > allEnemies[i].y)) {
-
-            // Reset player to the beginning
-            player.x = 200;
-            player.y = 380;
-        }
-    }
-
-};*/
-
-// Draw the enemy on the screen, required method for game
-/*Enemy.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};*/
 
 // Now write your own player class
 // This class requires an update(), render() and
 // a handleInput() method.
 
-var Player = function () {
-    this.sprite = 'images/char-horn-girl.png';
-    this.x = 200;
-    this.y = 380;
-    this.width = 50;
-    this.height = 50;
-};
-
-Player.prototype.update = function () {
-
-};
-
-Player.prototype.render = function () {
-    ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
-};
-
-Player.prototype.handleInput = function (key) {
-    if (key === 'up' && this.y > 20) {
-        this.y -= 85;
-    }
-    if (key === 'down' && this.y < 380) {
-        this.y += 85;
-    }
-    if (key === 'left' && this.x > 0) {
-        this.x -= 101;
-    }
-    if (key === 'right' && this.x < 402) {
-        this.x += 101;
-    }
-    if (this.y < 20 && key === 'up') {
-        // Add to point count when water is reached
-        points++;
-        // Update point counter
-        score.innerHTML = '<strong>Score:</strong> ' + points;
-        // You win!
-        if (points >= 5) {
-            modal();
-        }
-        // Reset to starting position
-        this.y = 380;
+class Player {
+    constructor() {
+        this.sprite = 'images/char-horn-girl.png';
         this.x = 200;
+        this.y = 380;
+        this.width = 50;
+        this.height = 50;
+    }
+    render() {
+        ctx.drawImage(Resources.get(this.sprite), this.x, this.y);
+    }
+    handleInput(key) {
+        if (key === 'up' && this.y > 20) {
+            this.y -= 85;
+        }
+        if (key === 'down' && this.y < 380) {
+            this.y += 85;
+        }
+        if (key === 'left' && this.x > 0) {
+            this.x -= 101;
+        }
+        if (key === 'right' && this.x < 402) {
+            this.x += 101;
+        }
+        if (this.y < 20 && key === 'up') {
+            // Add to point count when water is reached
+            points++;
+            // Update point counter
+            score.innerHTML = '<strong>Score:</strong> ' + points;
+            // You win!
+            if (points >= 5) {
+                modal();
+            }
+            // Reset to starting position
+            this.y = 380;
+            this.x = 200;
+        }
     }
 };
-
 
 // Display modal window
 function modal() {
